@@ -1,0 +1,59 @@
+{
+    "name": "xterm-electron",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron .",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder",
+        "postinstall": "electron-builder install-app-deps"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^27.0.3",
+        "electron-builder": "^24.6.4",
+        "electron-rebuild": "^3.2.9"
+    },
+    "dependencies": {
+        "node-pty": "^1.0.0",
+        "xterm": "^5.3.0",
+        "xterm-addon-fit": "^0.8.0"
+    },
+    "build": {
+        "appId": "your.app.id",
+        "productName": "Docker Desktop Lite",
+        "icon": "./icon/docker-desktop-lite.png",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "dist/**/*",
+            "node_modules/**/*",
+            "index.html",
+            "index.js",
+            "app.js",
+            "app.css",
+            "preload.js",
+            "renderer.js",
+            "package.json"
+        ],
+        "win": {
+            "target": "nsis",
+            "icon": "./docker-desktop-lite.png"
+        },
+        "mac": {
+            "target": "dmg",
+            "icon": "./docker-desktop-lite.png"
+        },
+        "linux": {
+            "target": [
+                "AppImage",
+                "deb"
+            ],
+            "icon": "./docker-desktop-lite.png"
+        }
+    }
+}

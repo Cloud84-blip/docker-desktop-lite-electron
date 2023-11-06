@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Terminal dans Electron</title>
+    <link rel="stylesheet" href="./node_modules/xterm/css/xterm.css" />
+    <link rel="stylesheet" href="./app.css" />
+</head>
+
+<body>
+
+    <div class="tab">
+        <button class="btn btn-bubble" onclick="openTab(event, 'Tab1')">Containers</button>
+        <button class="btn btn-bubble" onclick="openTab(event, 'Tab2')">Logs</button>
+        <button class="btn btn-bubble" onclick="openTab(event, 'Tab3')">Terminal</button>
+    </div>
+    <div id="tab-container">
+        <div id="Tab1" class="tabcontent">
+            <button id="dockerPsButton" class="btn-fn btn-four">Docker ps</button>
+            <button id="dockerKillButton" class="btn-fn btn-four">Kill</button>
+            <button id="selectAllButton" class="btn-fn btn-four">Select All</button>
+            <button id="dockerLogsButton" class="btn-fn btn-four">Logs</button>
+            <div id="dockerPsOutput"></div>
+        </div>
+
+        <div id="Tab2" class="tabcontent">
+            <div id="logsTabContainer">
+                <!-- Les sous-onglets des logs seront ajoutés ici dynamiquement -->
+            </div>
+            <div id="logsContainer">
+                <!-- Les logs seront ajoutés ici dynamiquement -->
+            </div>
+        </div>
+
+        <div id="Tab3" class="tabcontent">
+            <div id="terminal"></div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+    <script src="./node_modules/xterm/lib/xterm.js"></script>
+    <script src="./node_modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+    <script src="./renderer.js"></script>
+</body>
+
+</html>
