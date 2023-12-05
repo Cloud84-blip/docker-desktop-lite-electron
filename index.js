@@ -96,17 +96,25 @@ ipcMain.on('invoke-docker-ps', (event) => {
 });
 
 ipcMain.on('kill-selected-containers', (event, containers) => {
-    exec(`${dockerPath} kill ${containers.join(' ')}`, (error, stdout, stderr) => {
+    exec(`${dockerPath} kill ${Object.keys(containers).join(' ')}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Exécution de la commande Docker échouée : ${error}`);
             return;
         }
-        exec(`${dockerPath} rm ${containers.join(' ')}`, (error, stdout, stderr) => {
+        exec(`${dockerPath} rm ${Object.keys(containers).join(' ')}`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Exécution de la commande Docker échouée : ${error}`);
                 return;
             }
         })
+
+        exec(`${dockerPath} image rm ${Object.values(containers).join(' ')}`, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Exécution de la commande Docker échouée : ${error}`);
+                return;
+            }
+        })
+
         event.reply('docker-kill-data', stdout);
     });
 

@@ -185,7 +185,7 @@ dockerPsButton.addEventListener('click', () => {
 });
 
 dockerKillButton.addEventListener('click', () => {
-    window.electron.killSelectedContainers(Object.keys(selectedContainers));
+    window.electron.killSelectedContainers(selectedContainers);
 })
 
 selectAllButton.addEventListener('click', () => {
